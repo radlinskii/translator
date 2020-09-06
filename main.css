@@ -19,25 +19,22 @@ body h1 {
 	flex-wrap: wrap;
 }
 
-input, textarea {
+.input {
 	min-width: 300px;
 	width: 90%;
-}
-
-textarea {
 	height: 100px;
 }
 
-#bin-output, #dec-output {
+.output {
 	margin-top: 20px;
 	max-width: 100%;
 	word-break: break-word;
-	background-color: aliceblue;
+	background-color: rgba(240, 248, 255, 0.8);
 	border: 1px solid;
 	padding: 10px;
 }
 
-#dec-to-bin, #bin-to-dec {
+.inner-container {
 	padding: 20px;
 	flex: 1;
 }
