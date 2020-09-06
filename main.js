@@ -3,15 +3,19 @@ window.onload = function () {
 	const decTranslateButtonEl = document.getElementById('dec-translate-button');
 	const binOutputEl = document.getElementById('bin-output');
 	const binOutputCopyButtonEl = document.getElementById('bin-output-copy-button');
+	const binOutputCopyLabelEl = document.getElementById('bin-output-copy-label');
 
 	const binInputLabelEl = document.getElementById('bin-input-label');
 	const binInputEl = document.getElementById('bin-input');
 	const binTranslateButtonEl = document.getElementById('bin-translate-button');
 	const decOutputEl = document.getElementById('dec-output');
 	const decOutputCopyButtonEl = document.getElementById('dec-output-copy-button');
+	const decOutputCopyLabelEl = document.getElementById('dec-output-copy-label');
 
 	decTranslateButtonEl.addEventListener('click', handleDecTranslateButtonClick);
 	binTranslateButtonEl.addEventListener('click', handleBinTranslateButtonClick);
+	binOutputCopyButtonEl.addEventListener('click', handleCopyBinButtonClick);
+	decOutputCopyButtonEl.addEventListener('click', handleCopyDecButtonClick);
 
 	function handleDecTranslateButtonClick(event) {
 		event.preventDefault();
@@ -36,6 +40,37 @@ window.onload = function () {
 			binInputLabelEl.innerText = 'Binary Input'
 			binInputLabelEl.style.color = 'inherit';
 		}
+	}
+
+	function handleCopyBinButtonClick() {
+		copyToClipboard(binOutputEl, binOutputCopyLabelEl);
+	}
+
+	function handleCopyDecButtonClick() {
+		copyToClipboard(decOutputEl, decOutputCopyLabelEl)
+	}
+
+	function copyToClipboard(outputEl, labelEl) {
+		if (navigator.clipboard) {
+			navigator.clipboard.writeText(outputEl.innerText).then(function() {
+				showCopyLabel(labelEl, 'Copied Successfully!');
+			}, function(err) {
+				showCopyLabel(labelEl, "Couldn't copy!");
+			});
+		}
+	}
+
+	function showCopyLabel(labelEl, labelText) {
+		function hidelabelEl() {
+			labelEl.style.visibility = 'hidden';
+			labelEl.style.opacity = '0';
+		}
+
+		labelEl.innerText = labelText;
+		labelEl.style.visibility = 'visible';
+		labelEl.style.opacity = '1';
+		labelEl.style.color = 'green';
+		setTimeout(hidelabelEl, 3000);
 	}
 
 	function setDecTranslation(input) {
