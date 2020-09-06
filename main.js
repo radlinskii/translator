@@ -52,9 +52,9 @@ window.onload = function () {
 
 	function copyToClipboard(outputEl, labelEl) {
 		if (navigator.clipboard) {
-			navigator.clipboard.writeText(outputEl.innerText).then(function() {
+			navigator.clipboard.writeText(outputEl.innerText).then(function () {
 				showCopyLabel(labelEl, 'Copied Successfully!');
-			}, function(err) {
+			}, function (err) {
 				showCopyLabel(labelEl, "Couldn't copy!");
 			});
 		}
@@ -107,7 +107,7 @@ window.onload = function () {
 		return chars.join('');
 	}
 
-	function parseCharCodeToBin (integer) {
+	function parseCharCodeToBin(integer) {
 		let int = parseInt(integer, 10);
 
 		if (isNaN(int) || int < 0 || int > 511) {
@@ -119,21 +119,21 @@ window.onload = function () {
 
 		const binary = parsePositiveDecToBin(int);
 
-		for(let i = 0; i < binary.length; i++) {
-			result[9 - 1 - i] = binary[binary.length - 1 - i];
+		for (let i = 0; i < binary.length; i++) {
+			result[ 9 - 1 - i ] = binary[ binary.length - 1 - i ];
 		}
 
 		return result.join('');
 	}
 
-	function parsePositiveDecToBin (int) {
+	function parsePositiveDecToBin(int) {
 		if (int === 0) {
 			return '0';
 		}
 
 		let result = [];
 
-		for(let i = 0; int > 0; i++) {
+		for (let i = 0; int > 0; i++) {
 			result.push(String(int % 2));
 			int = parseInt(String(int / 2), 10);
 		}
@@ -141,7 +141,7 @@ window.onload = function () {
 		return result.reverse().join('');
 	}
 
-	function splitEvery (chunkSize, array) {
+	function splitEvery(chunkSize, array) {
 		return new Array(Math.ceil(array.length / chunkSize))
 			.fill()
 			.map((_, i) => array.slice(i * chunkSize, i * chunkSize + chunkSize))
