@@ -4,14 +4,38 @@ window.onload = function () {
 	const binOutputEl = document.getElementById('bin-output');
 	const binOutputCopyButtonEl = document.getElementById('bin-output-copy-button');
 
+	const binInputLabelEl = document.getElementById('bin-input-label');
+	const binInputEl = document.getElementById('bin-input');
+	const binTranslateButtonEl = document.getElementById('bin-translate-button');
+	const decOutputEl = document.getElementById('dec-output');
+	const decOutputCopyButtonEl = document.getElementById('dec-output-copy-button');
+
 	decTranslateButtonEl.addEventListener('click', handleDecTranslateButtonClick);
-	binOutputCopyButtonEl.addEventListener('click', handleCopyBinButtonClick);
+	binTranslateButtonEl.addEventListener('click', handleBinTranslateButtonClick);
 
 	function handleDecTranslateButtonClick(event) {
 		event.preventDefault();
 
 		const input = decInputEl.value;
 		setDecTranslation(input);
+	}
+
+	function handleBinTranslateButtonClick(event) {
+		event.preventDefault();
+
+		const input = binInputEl.value;
+
+		if (!isValidBin(input)) {
+			binInputLabelEl.innerText = 'Binary Input can only contain "0"s and "1"s !'
+			binInputLabelEl.style.color = 'red';
+		} else if (input.length < 9) {
+			binInputLabelEl.innerText = 'Binary Input has to contain at least 9 "0"s or "1"s !'
+			binInputLabelEl.style.color = 'red';
+		} else {
+			setBinTranslation(input);
+			binInputLabelEl.innerText = 'Binary Input'
+			binInputLabelEl.style.color = 'inherit';
+		}
 	}
 
 	function setDecTranslation(input) {
@@ -24,10 +48,28 @@ window.onload = function () {
 		}
 	}
 
+	function setBinTranslation(input) {
+		if (input.length === 0) {
+			decOutputEl.innerHTML = '&mdash;'
+			decOutputCopyButtonEl.disabled = true;
+		} else {
+			decOutputCopyButtonEl.disabled = false;
+			decOutputEl.innerText = getBinTranslation(input);
+		}
+	}
+
 	function getDecTranslation(input) {
 		const charCodeArray = input.split('').map(char => char.charCodeAt(0)).map(parseCharCodeToBin)
 
 		return charCodeArray.join('');
+	}
+
+	function getBinTranslation(input) {
+		const binArray = input.split('');
+		const binCharCodeArray = splitEvery(9, binArray);
+		const chars = binCharCodeArray.map(binCharCode => String.fromCharCode(parseInt(binCharCode.join(''), 2)))
+
+		return chars.join('');
 	}
 
 	function parseCharCodeToBin (integer) {
@@ -62,5 +104,22 @@ window.onload = function () {
 		}
 
 		return result.reverse().join('');
+	}
+
+	function splitEvery (chunkSize, array) {
+		return new Array(Math.ceil(array.length / chunkSize))
+			.fill()
+			.map((_, i) => array.slice(i * chunkSize, i * chunkSize + chunkSize))
+	}
+
+	function isValidBin(input) {
+		const inputStr = String(input);
+		for (let i = 0; i < inputStr.length; i++) {
+			if (inputStr.charAt(i) !== '0' && inputStr.charAt(i) !== '1') {
+				return false;
+			}
+		}
+
+		return true;
 	}
 };
