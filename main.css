@@ -1,0 +1,57 @@
+body {
+	padding: 40px;
+	border-collapse: collapse;
+}
+
+body h1 {
+	text-align: center;
+}
+
+.label {
+	display: block;
+	margin-top: 20px;
+}
+
+#outer-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+input, textarea {
+	min-width: 300px;
+	width: 90%;
+}
+
+textarea {
+	height: 100px;
+}
+
+#bin-output, #dec-output {
+	margin-top: 20px;
+	max-width: 100%;
+	word-break: break-word;
+	background-color: aliceblue;
+	border: 1px solid;
+	padding: 10px;
+}
+
+#dec-to-bin, #bin-to-dec {
+	padding: 20px;
+	flex: 1;
+}
+
+#bin-to-dec {
+	background-color: antiquewhite;
+}
+
+#dec-to-bin {
+	background-color: beige;
+}
+
+.copy-label {
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 0.5s, opacity 0.5s ease-in-out;
+}
