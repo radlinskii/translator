@@ -39,11 +39,11 @@ body h1 {
 	flex: 1;
 }
 
-#bin-to-dec {
+#bin-to-text {
 	background-color: antiquewhite;
 }
 
-#dec-to-bin {
+#text-to-bin {
 	background-color: beige;
 }
 

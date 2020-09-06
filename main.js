@@ -1,6 +1,6 @@
 window.onload = function () {
-	const decInputEl = document.getElementById('dec-input');
-	const decTranslateButtonEl = document.getElementById('dec-translate-button');
+	const textInputEl = document.getElementById('text-input');
+	const textTranslateButtonEl = document.getElementById('text-translate-button');
 	const binOutputEl = document.getElementById('bin-output');
 	const binOutputCopyButtonEl = document.getElementById('bin-output-copy-button');
 	const binOutputCopyLabelEl = document.getElementById('bin-output-copy-label');
@@ -8,20 +8,20 @@ window.onload = function () {
 	const binInputLabelEl = document.getElementById('bin-input-label');
 	const binInputEl = document.getElementById('bin-input');
 	const binTranslateButtonEl = document.getElementById('bin-translate-button');
-	const decOutputEl = document.getElementById('dec-output');
-	const decOutputCopyButtonEl = document.getElementById('dec-output-copy-button');
-	const decOutputCopyLabelEl = document.getElementById('dec-output-copy-label');
+	const textOutputEl = document.getElementById('text-output');
+	const textOutputCopyButtonEl = document.getElementById('text-output-copy-button');
+	const textOutputCopyLabelEl = document.getElementById('text-output-copy-label');
 
-	decTranslateButtonEl.addEventListener('click', handleDecTranslateButtonClick);
+	textTranslateButtonEl.addEventListener('click', handleTextTranslateButtonClick);
 	binTranslateButtonEl.addEventListener('click', handleBinTranslateButtonClick);
 	binOutputCopyButtonEl.addEventListener('click', handleCopyBinButtonClick);
-	decOutputCopyButtonEl.addEventListener('click', handleCopyDecButtonClick);
+	textOutputCopyButtonEl.addEventListener('click', handleCopyTextButtonClick);
 
-	function handleDecTranslateButtonClick(event) {
+	function handleTextTranslateButtonClick(event) {
 		event.preventDefault();
 
-		const input = decInputEl.value;
-		setDecTranslation(input);
+		const input = textInputEl.value;
+		setTextTranslation(input);
 	}
 
 	function handleBinTranslateButtonClick(event) {
@@ -46,8 +46,8 @@ window.onload = function () {
 		copyToClipboard(binOutputEl, binOutputCopyLabelEl);
 	}
 
-	function handleCopyDecButtonClick() {
-		copyToClipboard(decOutputEl, decOutputCopyLabelEl)
+	function handleCopyTextButtonClick() {
+		copyToClipboard(textOutputEl, textOutputCopyLabelEl)
 	}
 
 	function copyToClipboard(outputEl, labelEl) {
@@ -73,27 +73,27 @@ window.onload = function () {
 		setTimeout(hidelabelEl, 3000);
 	}
 
-	function setDecTranslation(input) {
+	function setTextTranslation(input) {
 		if (input.length === 0) {
 			binOutputEl.innerHTML = '&mdash;'
 			binOutputCopyButtonEl.disabled = true;
 		} else {
 			binOutputCopyButtonEl.disabled = false;
-			binOutputEl.innerText = getDecTranslation(input);
+			binOutputEl.innerText = getTextTranslation(input);
 		}
 	}
 
 	function setBinTranslation(input) {
 		if (input.length === 0) {
-			decOutputEl.innerHTML = '&mdash;'
-			decOutputCopyButtonEl.disabled = true;
+			textOutputEl.innerHTML = '&mdash;'
+			textOutputCopyButtonEl.disabled = true;
 		} else {
-			decOutputCopyButtonEl.disabled = false;
-			decOutputEl.innerText = getBinTranslation(input);
+			textOutputCopyButtonEl.disabled = false;
+			textOutputEl.innerText = getBinTranslation(input);
 		}
 	}
 
-	function getDecTranslation(input) {
+	function getTextTranslation(input) {
 		const charCodeArray = input.split('').map(char => char.charCodeAt(0)).map(parseCharCodeToBin)
 
 		return charCodeArray.join('');

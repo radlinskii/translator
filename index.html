@@ -6,15 +6,15 @@
 	<link rel="stylesheet" type="text/css" href="./main.css"/>
 </head>
 <body>
-	<h1>Dec to Bin / Bin to Dec Translator</h1>
+	<h1>Text to Bin / Bin to Text Translator</h1>
 	<div id="outer-container">
-		<div id="dec-to-bin" class="inner-container">
+		<div id="text-to-bin" class="inner-container">
 			<form>
 				<label>
 					<span class="label">Text Input</span>
-					<textarea class="input" id="dec-input" placeholder="text to be translated"></textarea>
+					<textarea class="input" id="text-input" placeholder="text to be translated"></textarea>
 				</label>
-				<button id="dec-translate-button" type="submit">Translate</button>
+				<button id="text-translate-button" type="submit">Translate</button>
 			</form>
 			<div id="output-bin-container">
 				<span class="label">Binary Output:</span>
@@ -23,7 +23,7 @@
 				<span class="copy-label" id="bin-output-copy-label">Copied Successfully!</span>
 			</div>
 		</div>
-		<div id="bin-to-dec" class="inner-container">
+		<div id="bin-to-text" class="inner-container">
 			<form>
 				<label>
 					<span class="label" id="bin-input-label">Binary Input</span>
@@ -31,11 +31,11 @@
 				</label>
 				<button id="bin-translate-button" type="submit">Translate</button>
 			</form>
-			<div id="dec-output-container">
+			<div id="text-output-container">
 				<span class="label">Text Output:</span>
-				<div id="dec-output" class="output">&mdash;</div>
-				<button disabled id="dec-output-copy-button" type="button">Copy output Clipboard</button>
-				<span class="copy-label" id="dec-output-copy-label">Copied Successfully!</span>
+				<div id="text-output" class="output">&mdash;</div>
+				<button disabled id="text-output-copy-button" type="button">Copy output Clipboard</button>
+				<span class="copy-label" id="text-output-copy-label">Copied Successfully!</span>
 			</div>
 		</div>
 	</div>
